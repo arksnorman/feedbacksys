@@ -241,6 +241,9 @@ switch (ENVIRONMENT)
 	// Base URL link
 	define('baseUrl', '');
 
+	// Define path to custom core file
+	define('core', rootPath . '/public/core/init.php');
+
 	// The path to the "application" directory
 	if (is_dir($application_folder))
 	{
