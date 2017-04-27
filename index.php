@@ -235,6 +235,9 @@ switch (ENVIRONMENT)
 	// Name of the "system" directory
 	define('SYSDIR', basename(BASEPATH));
 
+	// Name of the apache document root
+	define('rootPath', $_SERVER['DOCUMENT_ROOT']);	
+
 	// The path to the "application" directory
 	if (is_dir($application_folder))
 	{
