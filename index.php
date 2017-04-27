@@ -238,6 +238,9 @@ switch (ENVIRONMENT)
 	// Name of the apache document root
 	define('rootPath', $_SERVER['DOCUMENT_ROOT']);	
 
+	// Base URL link
+	define('baseUrl', '');
+
 	// The path to the "application" directory
 	if (is_dir($application_folder))
 	{
