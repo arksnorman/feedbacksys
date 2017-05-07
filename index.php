@@ -1,5 +1,7 @@
 <?php
 
+	$title = 'Give Us Your Feedback';
+
 	require_once 'core/init.php';
 
 	require_once header;

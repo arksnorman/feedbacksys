@@ -14,4 +14,8 @@
 
 	define('customcss', baseUrl . '/assets/css/custom.css');
 
+	define('fontawesome', baseUrl . '/assets/css/font-awesome.min.css');	
+
+	define('loginView', rootPath . '/views/login.php');	
+
 ?>
