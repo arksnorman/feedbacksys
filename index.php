@@ -1,8 +1,6 @@
 <?php
 
-	defined('BASEPATH') OR exit('No direct script access allowed');
-
-	require_once core;
+	require_once 'core/init.php';
 
 	require_once header;
 
