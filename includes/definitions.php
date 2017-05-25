@@ -18,4 +18,6 @@
 
 	define('loginView', rootPath . '/views/login.php');	
 
+	define('company', 'Milestone Techonologies');	
+
 ?>
