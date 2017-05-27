@@ -1,6 +1,6 @@
 <?php
 
-	$title = 'Login | Feedback System';
+	$pageTitle = 'Login | Feedback System';
 
 	require_once '../core/init.php';
 

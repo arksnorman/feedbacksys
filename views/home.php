@@ -14,7 +14,7 @@
 
 		<div class="col-md-4">
 			
-			<form action="post.php" method="POST" role="form">
+			<form action="/" method="POST" role="form">
 
 				<div class="form-group">
 
@@ -55,6 +55,14 @@
 
 				</div>
 
+				<div class="form-group">
+					
+					<label for="liketrainer">Do you understand what he teaches.</label><br>
+
+					<input type="checkbox" value="yes" name="checkboxunderstand"> Check box if yes
+
+				</div>
+
 		</div>
 
 		<div class="col-md-4">
@@ -87,13 +95,7 @@
 
 				</div>
 
-				<div class="form-group">
-
-					<label for="understand">Do you understand what he teaches.</label>
-
-					<textarea class="form-control" rows="4" name="understand" id="understand"></textarea>
-
-				</div>
+				<hr />
 
 				<button type="submit" name="submit" class="btn btn-info">Submit</button>
 
