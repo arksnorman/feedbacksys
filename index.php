@@ -4,35 +4,90 @@
 
 	require_once 'core/init.php';
 
-	$trainerList = getAll('trainers');
+	$trainerList = Database::getAll('trainers');
 
-	if (isset($_POST['submit'])) 
+	$errorList = array();
+
+	if (isset($_POST['submit']))
 	{
 	
 		$trainerName = Clean::input($_POST['trainer']);
 
-		$doYouLike = Clean::input($_POST['checkbox']);
+		$like = '' . Clean::input($_POST['like']);
 
-		$understand = Clean::input($_POST['checkboxunderstand']);
+		$understand = '' . Clean::input($_POST['understand']);
 
-		$likeComment = Clean::input($_POST['liketrainercomment']);
+		$likeComment = Clean::input($_POST['likeComment']);
 
-		$unLikeComment = Clean::input($_POST['unliketrainercomment']);
+		$dontLikeComment = Clean::input($_POST['dontLikeComment']);
 
-		$trainerImproveOn = Clean::input($_POST['improveOn']);
+		$trainerImproveOn = Clean::input($_POST['trainerImproveOn']);
 
-		$milestoneImproveOn = Clean::input($_POST['milestoneImproveOn']);		
+		$milestoneImproveOn = Clean::input($_POST['milestoneImproveOn']);
 
-		$array = array($trainerName, $doYouLike, $likeComment, $unLikeComment, $milestoneImproveOn, $trainerImproveOn, $understand);
-
-		$query = 'INSERT INTO feedback(feedback_trainer,feedback_like,feedback_likes,feedback_unlikes,feedback_milestone,feedback_improveon,feedback_understand) VALUES(?,?,?,?,?,?,?)';
-
-		if (Database::getInstance()->query($query, $array)) 
+		if (!(empty($trainerName) || empty($likeComment) || empty($dontLikeComment) || empty($trainerImproveOn) || empty($milestoneImproveOn)))
 		{
 
-			echo "success";
-			
+			if (isset($like) && $like == 'on') 
+			{
+
+				$isLiked = 1;
+				
+			}
+
+			else
+			{
+
+				$isLiked = 0;
+
+			}
+
+			if (isset($understand) && $understand == 'on') 
+			{
+				
+				$isUnderstand = 1;
+
+			}
+
+			else
+			{
+
+				$isUnderstand = 0;
+
+			}
+
+			$array = array(
+				'feedback_trainer' => $trainerName,
+				'feedback_like' => $isLiked,
+				'feedback_understand' => $isUnderstand,
+				'feedback_likecomment' => $likeComment,
+				'feedback_dontlikecomment' => $dontLikeComment,
+				'feedback_trainerimproveon' => $trainerImproveOn,
+				'feedback_milestone' => $milestoneImproveOn,
+				);
+
+			if (Database::insert('feedbackinfo', $array)) 
+			{
+
+				Redirect::to('/?status=success');
+
+			}
+
+			else
+			{
+
+				$errorList[] = 'There was an error submitting results. Try again later';
+
+			}
+
 		}
+
+		else
+		{
+
+			$errorList[] = "Fields with * must be filled in";
+
+		}		
 
 	}
 

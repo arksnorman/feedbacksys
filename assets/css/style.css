@@ -1,0 +1,59 @@
+html,
+body 
+{
+    height: 100%; 
+    font-family: "Gotham Rounded A", "Gotham Rounded B", Helvetica, Arial, sans-serif !important;
+    font-weight: 400 !important;
+    text-rendering: geometricPrecision;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+.navbar 
+{
+    background-color: #3e474f !important;
+    font-weight: 500 !important;
+}
+
+.wow 
+{
+	visibility: hidden;
+}
+
+.h1-responsive
+{
+	font-family: "Gotham Rounded A", "Gotham Rounded B", Helvetica, Arial, sans-serif !important;
+	font-weight: 600;
+
+}
+
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6
+{
+	font-family: "Gotham Rounded A", "Gotham Rounded B", Helvetica, Arial, sans-serif !important;
+	font-weight: 600;
+}
+
+.btn
+{
+    font-family: "Gotham Rounded A", "Gotham Rounded B", Helvetica, Arial, sans-serif !important;
+    font-weight: 400 !important;
+    text-rendering: geometricPrecision;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+.jumbotron
+{
+	background-color: #5fcf80;
+	color: #fff;
+}
+
+.nav-item
+{
+    font-weight: 500;  
+}
+
+p
+{
+    font-weight: 500;
+}

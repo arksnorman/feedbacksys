@@ -1,103 +1,146 @@
 <div class="container">
 
-	<br>
+	<!--Jumbotron-->
+    <div style="background-color: #5fcf80; margin-top: 50px;" class="text-center jumbotron">
+    
+        <h1 class="text-white h1-responsive"><?=brand;?> Internship Feedback</h1>
 
-	<h1 class="text-center"><?=company;?></h1>
+        <p class="text-white lead">Give us your feedback about our Internship Services</p>
 
-	<br>
+    </div>
+    <!--/.Jumbotron-->
 
-	<h3 class="text-center">Give us your feedback</h3>
+    <br />
 
-	<br><hr /><br><br>
-	
-	<div class="row">
+    <?php 
 
-		<div class="col-md-4">
-			
-			<form action="/" method="POST" role="form">
+    	if (isset($_GET['status']) && $_GET['status'] = 'success') 
+    	{
+    		
+    		echo '
+    		<div class="card card-success text-center z-depth-2">
+        		<div class="card-block">
+           		 <p class="white-text">Thanks for your feedback</p>
+       			 </div>
+    		</div>
 
-				<div class="form-group">
+    		<br />';
 
-					<label for="selecttrainer">Select Trainer</label>
+    	}
 
-					<select class="form-control" name="trainer" id="selecttrainer" required>
+    	elseif (count($errorList)) 
+    	{
 
-					<option></option>
+    		echo '<div class="card card-danger text-center z-depth-2">
+	        		<div class="card-block">';
 
-					<?php
+    		foreach ($errorList as $error) 
+    		{
 
-						foreach ($trainerList as $trainer) 
-						{
-							
-							echo "<option>{$trainer->trainer_name}</option>";
+    			echo '<p class="white-text">' . $error . '</p>';
+    		}
 
-						}
+    		echo "</div></div><br />";
 
-					?>
+    	}
+
+    ?>
+
+    <div class="row">
+
+	    <div class="col-md-6">
+
+	    	<form action="/" method="POST" role="form">
+
+			<div class="card card-block">
+
+				<br />
+
+				<div class="md-form">
+
+					<select class="mdb-select colorful-select dropdown-info" name="trainer">
+
+					    <option></option>
+
+					    <?php
+
+							foreach ($trainerList as $trainer) 
+							{
+								
+								echo "<option>{$trainer->name}</option>";
+
+							}
+
+						?>
 
 					</select>
 
-				</div>
-
-				<div class="form-group">
-
-					<label for="liketrainercomment">What do you like about this trainer</label>
-
-					<textarea class="form-control" rows="3" name="liketrainercomment" id="liketrainercomment"></textarea>
+					<label>Select trainer *</label>
 
 				</div>
 
-				<div class="form-group">
-					
-					<label for="liketrainer">Do you like this trainer</label><br>
+			    <div class="md-form">
+			        <i class="fa fa-user prefix"></i>
+			        <input type="text" id="form4" class="form-control" name="trainerImproveOn">
+			        <label for="form4">What should this trainer improve on *</label>
+			    </div>
 
-					<input type="checkbox" value="yes" name="checkbox"> Check box if yes
+			    <div class="md-form">
+			        <label for="like">Do you like this trainer</label>
+			    </div>
 
+				<div class="switch md-form">
+					<label>No<input type="checkbox" name="like"><span class="lever"></span>Yes</label>
 				</div>
 
-				<div class="form-group">
-					
-					<label for="liketrainer">Do you understand what he teaches.</label><br>
+				<br />
 
-					<input type="checkbox" value="yes" name="checkboxunderstand"> Check box if yes
+				<br />
 
+				<div class="md-form">
+			        <label for="understand">Do you understand what he/she teaches</label>
+			    </div>
+
+				<div class="switch md-form">
+					<label>No<input type="checkbox" name="understand"><span class="lever"></span>Yes</label>
 				</div>
+
+				<br />
+
+				<br />
+
+			</div>
 
 		</div>
 
-		<div class="col-md-4">
+		<div class="col-md-6">
 
-				<div class="form-group">
+			<div class="card card-block">
 
-					<label for="unliketrainercomment">What dont you like about this trainer</label>
-
-					<textarea class="form-control" rows="4" name="unliketrainercomment" id="unliketrainercomment"></textarea>
-
-				</div>	
-
-				<div class="form-group">
-
-					<label for="improveOn">What should this trainer improve on </label>
-
-					<textarea class="form-control" rows="4" name="improveOn" id="improveOn"></textarea>
-
-				</div>			
-
-		</div>
-
-		<div class="col-md-4">
-			
-				<div class="form-group">
-
-					<label for="milestoneImproveOn">What should <?=company;?> improve on</label>
-
-					<textarea class="form-control" rows="4" name="milestoneImproveOn" id="milestoneImproveOn"></textarea>
-
+			    <div class="md-form">
+				    <i class="fa fa-pencil prefix"></i>
+				    <textarea type="text" id="form1" class="md-textarea" name="likeComment"></textarea>
+				    <label for="form1">What do you like about this trainer *</label>
 				</div>
 
-				<hr />
 
-				<button type="submit" name="submit" class="btn btn-info">Submit</button>
+				<div class="md-form">
+				    <i class="fa fa-pencil prefix"></i>
+				    <textarea type="text" id="form2" class="md-textarea" name="dontLikeComment"></textarea>
+				    <label for="form2">What don't you like about this trainer *</label>
+				</div>
+
+				<div class="md-form">
+				    <i class="fa fa-pencil prefix"></i>
+				    <textarea type="text" id="form3" class="md-textarea" name="milestoneImproveOn"></textarea>
+				    <label for="form3">What should <?=brand;?> improve on *</label>
+				</div>
+
+			    <div class="text-center">
+			        <button class="btn btn-info" name="submit">Submit</button>
+			    </div>
+
+			</div>
 
 			</form>
 

@@ -16,6 +16,12 @@
 
 	<link rel="stylesheet" type="text/css" href="<?=fontawesome;?>">
 
+	<link rel="stylesheet" type="text/css" href="/assets/css/mdb.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/gotham.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
 </head>
 
 <body>

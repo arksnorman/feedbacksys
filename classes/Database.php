@@ -34,7 +34,7 @@
 		private static $dbhost = '127.0.0.1';
 
 		// property containing database name
-		private static $dbname = 'feedbacksystem';
+		private static $dbname = 'feedbacksys';
 
 		// property containing database username
 		private static $dbusername = 'root';
@@ -42,8 +42,8 @@
 		// property containing database password
 		private static $dbpassword = 'root';
 
-		// Method to auto-connect to database at the call of this class
-		private function __construct()
+		// Method to connect to database
+		private static function connect()
 		{
 
 			try 
@@ -62,6 +62,8 @@
 
 			}
 
+			return new static;
+
 		}
 
 		// Method to return succesfull connection to database in case of no error
@@ -72,7 +74,7 @@
 			{
 
 				// assign static variable $_instance to database class to construct new database
-				self::$instance = new self;
+				self::$instance = self::connect();
 
 			}
 
@@ -82,7 +84,7 @@
 		}
 
 		// Method to hand queries from users i.e "SELECT, INSERT, UPDATE, etc"
-		public function query($sql, $params = array())
+		public static function query($sql, $params = array())
 		{
 
 			// initialize error to false to avoid returning errors of previous queries
@@ -126,13 +128,13 @@
 
 				}
 
-			}
+				return new static;
 
-			return $this;
+			}			
 
 		}
 
-		private function action($action, $table, $where = array())
+		private static function action($action, $table, $where = array())
 		{
 
 			if (count($where) === 3)
@@ -149,28 +151,14 @@
 				if (in_array($operator, $operators)) 
 				{
 
-					$sql = "{$action} FROM {$table} WHERE {$filed} {$operator} ?";
+					$sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
 
-					if (!$this->query($sql, array($value))->error()) 
+					if (!self::getInstance()->query($sql, array($value))->error()) 
 					{
 
-						return $this;
+						return new static;
 
 					}
-
-				}
-
-			}
-
-			elseif (empty($where)) 
-			{
-
-				$sql = "{$action} FROM {$table}";
-
-				if (!$this->query($sql)->error()) 
-				{
-
-					return $this;
 
 				}
 
@@ -181,35 +169,68 @@
 		}
 
 		// get specified data from table
-		public function get($table, $where = array())
+		public static function getWhere($table, $where = array())
 		{
 			
-			return $this->action('SELECT *', $table, $where);
+			return self::action('SELECT *', $table, $where)->results();
 			
 		}
 
-		// get all data from table
-		public function getAll($table)
+		public static function getAll($table)
 		{
 			
-			return $this->action('SELECT *', $table);
-			
-		}
-
-		public function insert($table, $fields, $values, $array)
-		{
-
-			$sql = "INSERT INTO {$table}({$fields}) $values";
-
-			return self::getInstance()->query($sql, $array);
+			return self::getInstance()->query("SELECT * FROM {$table}")->results();
 			
 		}
 
 		// Delete specified data from table
-		public function delete($table, $where)
+		public static function delete($table, $where)
 		{
 
-			return $this->action('DELETE', $table, $where);
+			return self::action('DELETE', $table, $where);
+
+		}
+
+		public static function insert($table, $fields = array())
+		{
+
+			if (count($fields)) 
+			{
+				
+				$keys = array_keys($fields);
+
+				$values = '';
+
+				$x = 1;
+
+				foreach ($fields as $field) 
+				{
+					
+					$values .= '?';
+
+					if ($x < count($fields)) 
+					{
+						
+						$values .= ', ';
+
+						$x++; 
+
+					}
+
+				}
+
+				$queryString = "INSERT INTO {$table} (`" . implode('`, `', $keys) . "`) VALUES ({$values})";
+
+				if (!self::getInstance()->query($queryString, $fields)->error()) 
+				{
+					
+					return true;
+
+				}
+
+			}
+
+			return false;
 
 		}
 
@@ -238,5 +259,5 @@
 		}
 
 	}
-	
+
 ?>

@@ -8,7 +8,7 @@
 
 	define('bootstrapcss', baseUrl . '/assets/css/bootstrap.min.css');
 
-	define('jquery', baseUrl . '/assets/js/jquery.js');
+	define('jquery', baseUrl . '/assets/js/jquery-3.1.1.min.js');
 	
 	define('bootstrapjs', baseUrl . '/assets/js/bootstrap.min.js');
 
@@ -18,6 +18,6 @@
 
 	define('loginView', rootPath . '/views/login.php');	
 
-	define('company', 'Milestone Techonologies');	
+	define('brand', 'Milestone Techonologies');	
 
 ?>

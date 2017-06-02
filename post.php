@@ -1,10 +1,14 @@
 <?php 
 
-	echo $_POST['trainer'] . "<br>";
-	echo $_POST['checkbox'] . "<br>";
-	echo $_POST['liketrainercomment'] . "<br>";
-	echo $_POST['unliketrainercomment'] . "<br>";
-	echo $_POST['improveOn'] . "<br>";
-	echo $_POST['checkboxunderstand'];
+	echo 'trainer: ' . $_POST['trainer'] . "<br>";
+	echo 'like: ' . $_POST['like'] . "<br>";
+	echo 'understand: ' . $_POST['understand'] . "<br>";
+	echo 'likeComment: ' . $_POST['likeComment'] . "<br>";
+	echo 'dontLikeComment: ' . $_POST['dontLikeComment'] . "<br>";
+	echo 'trainerImproveOn: ' . $_POST['trainerImproveOn'];
+
+	echo 'milestoneImproveOn: ' . $_POST['milestoneImproveOn'];
+
+
 
 ?>
